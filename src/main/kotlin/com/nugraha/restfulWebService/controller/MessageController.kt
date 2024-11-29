@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.RestController
 import java.net.URI
 
 @RestController
-class MessageController(pivate val service: MessageService) {
+class MessageController(private val service: MessageService) {
     @GetMapping("/")
     fun listMessages() = service.findMessages()
-    )
 
     @PostMapping
     fun post(@RequestBody message: Message): ResponseEntity<Message> {
