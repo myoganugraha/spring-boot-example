@@ -14,7 +14,7 @@ class MessageService(private val db: JdbcTemplate) {
     fun save(message: Message): Message {
         val id = message.id ?: UUID.randomUUID().toString()
         db.update(
-            "insert into messages value ( ?, ? )",
+            "insert into messages values ( ?, ? )",
             id, message.text,
         )
         return message.copy(id = id)
