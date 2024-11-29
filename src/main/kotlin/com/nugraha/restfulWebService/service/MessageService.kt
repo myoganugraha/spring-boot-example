@@ -3,6 +3,7 @@ package com.nugraha.restfulWebService.service
 import com.nugraha.restfulWebService.dto.Message
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Service
+import  java.util.UUID
 
 @Service
 class MessageService(private val db: JdbcTemplate) {
@@ -11,9 +12,10 @@ class MessageService(private val db: JdbcTemplate) {
     }
 
     fun save(message: Message): Message {
+        val id = message.id ?: UUID.randomUUID().toString()
         db.update(
             "insert into messages value ( ?, ? )",
-            message.id, message.text,
+            id, message.text,
         )
         return message
     }
