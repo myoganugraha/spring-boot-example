@@ -17,6 +17,6 @@ class MessageService(private val db: JdbcTemplate) {
             "insert into messages value ( ?, ? )",
             id, message.text,
         )
-        return message
+        return message.copy(id = id)
     }
 }
